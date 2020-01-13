@@ -1,13 +1,15 @@
 $(document).ready(function() {
   //doc ready
 
-  var topics = ["anger", "fear", "sad", "disgust", "disgust", "surprise", "anticipation", "trust", "joy"];
+  var topics = ["anger", "fear", "sad", "disgust", "surprise", "anticipation", "trust", "joy"];
 
-  $("#test-button").on("click", function getGifs() {
-    var userInput = "star-wars";
+  
+  
+  $(document).on("click", ".btn", function getGifs() {
+    
     var url = "https://api.giphy.com/v1/gifs/search";
     var key = "api_key=TetrpMjBeTZDHJDhshu2qZwVTVoobDCD";
-    var q = "q=" + userInput;
+    var q = "q=" + $("data-name");
     var limit = "limit=10";
     var offset = "offset=0";
     var rating = "rating=PG-13";
@@ -59,8 +61,29 @@ $(document).ready(function() {
     }); //then closing tag
   }); //getGifs closing tag
 
+
+  function addButton(){
+    $("#topics").empty();
+    for (i=0; i < topics.length; i++) {
+      var newButton = $("<button>");
+      newButton.addClass("btn btn-primary");
+      newButton.attr("id", topics[i]);
+      newButton.attr("data-name", topics[i]);
+      newButton.text(topics[i]);
+      $("#topics").append(newButton);
+    }
+  }
+
+  addButton();
+
+  $("#add-button").on("click", function(){
+    event.preventDefault();
+    var topic = $("#add-topic").val().trim();
+    topics.push(topic);
+    addButton();
+  });
   $(document).on("click", ".gif", function toggleState() {
-      console.log("Is this even working?");
+      
     var state = $(this).attr("data-state");
 
     if (state === "still") {
@@ -74,7 +97,5 @@ $(document).ready(function() {
     }
   }); //toggleState closing tag
 
-
-
-
+  addButton();
 }); //doc ready closing tag
