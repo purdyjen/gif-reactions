@@ -3,12 +3,16 @@
     position: relative;
     width: 100%;
     max-width: 200px;
-    
+    padding: 0;
   }
   
+  .hidden {
+      display: none;
+  }
   /* Make the image to responsive */
   .gif {
     z-index: 0;
+    width: 100%;
   }
   
   /* The overlay effect (full height and width) - lays on top of the container and over the image */
@@ -20,7 +24,7 @@
     right: 0;
     /* height: 100px; */
     /* width: 100px; */
-    opacity: 0;
+    opacity: 1;
     transition: .3s ease;
     /* background-color: red; */
   }
@@ -32,11 +36,11 @@
   
   /* The icon inside the overlay is positioned in the middle vertically and horizontally */
   .icon {
-    z-index: 1;
-    color: white;
-    font-size: 100px;
+    z-index: 1000;
+    color: #ffffff;
+    font-size: 20px;
     position: absolute;
-    bottom: 0;
+    top: 15px;
     right: 0;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
@@ -44,6 +48,6 @@
   }
   
   /* When you move the mouse over the icon, change color */
-  .fa-user:hover {
-    color: #eee;
+  .fa-heart:hover {
+    color: #ffffff;
   }

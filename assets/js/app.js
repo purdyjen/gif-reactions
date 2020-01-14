@@ -20,6 +20,7 @@ $(document).ready(function() {
       newButton.attr("data-name", topics[i]);
       newButton.text(topics[i]);
       $("#topics").append(newButton);
+
     }
   }
 
@@ -78,29 +79,31 @@ $(document).ready(function() {
             "LINK: " +
             response.data[i].images.fixed_width_still.url
         );
+        var images = $("<div>");
         var gifDiv = $("<div>");
         var img = $("<img>");
         var p = $("<p>");
-        var overlay = $("<div>");
         var a = $("<a>");
         var icon = $("<i>");
-        gifDiv.addClass("container");
+        images.addClass("images container");
+        images.attr("data-name", q);
+        
         p.text("Rating: " + response.data[i].rating);
-        img.addClass("gif container");
+        img.addClass("gif");
         img.attr("data-id", response.data[i].id);
         img.attr("alt", response.data[i].title);
         img.attr("src", response.data[i].images.fixed_width_still.url);
         img.attr("data-state", "still");
         img.attr("data-animate", response.data[i].images.fixed_width.url);
         img.attr("data-still", response.data[i].images.fixed_width_still.url);
-        overlay.addClass("overlay");
-        icon.addClass("icon");
+        icon.addClass("icon far fa-heart");
+        $("#images").append(images);
+        $(images).prepend(gifDiv);
         $(gifDiv).append(img);
-        $(gifDiv).append(overlay);
-        $(overlay).append(icon);
+        $(gifDiv).append(icon);
         $(gifDiv).append(p);
 
-        $("#images").prepend(gifDiv);
+        
       } //for loop close
     }); //then closing tag
   }); //getGifs closing tag
