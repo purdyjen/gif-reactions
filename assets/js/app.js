@@ -1,15 +1,44 @@
 $(document).ready(function() {
   //doc ready
 
-  var topics = ["anger", "fear", "sad", "disgust", "surprise", "anticipation", "trust", "joy"];
+  var topics = [
+    "anger",
+    "fear",
+    "sad",
+    "disgust",
+    "surprise",
+    "anticipation",
+    "trust",
+    "joy"
+  ];
 
-  
-  
+  function addButton() {
+    $("#topics").empty();
+    for (i = 0; i < topics.length; i++) {
+      var newButton = $("<button>");
+      newButton.addClass("btn btn-primary");
+      newButton.attr("data-name", topics[i]);
+      newButton.text(topics[i]);
+      $("#topics").append(newButton);
+    }
+  }
+
+  addButton();
+
+  $("#add-button").on("click", function() {
+    event.preventDefault();
+    var topic = $("#add-topic")
+      .val()
+      .trim();
+
+    topics.push(topic);
+    addButton();
+  });
+
   $(document).on("click", ".btn", function getGifs() {
-    
     var url = "https://api.giphy.com/v1/gifs/search";
     var key = "api_key=TetrpMjBeTZDHJDhshu2qZwVTVoobDCD";
-    var q = "q=" + $("data-name");
+    var q = $(this).attr("data-name");
     var limit = "limit=10";
     var offset = "offset=0";
     var rating = "rating=PG-13";
@@ -20,6 +49,7 @@ $(document).ready(function() {
       "?" +
       key +
       "&" +
+      "q=" +
       q +
       "&" +
       limit +
@@ -34,56 +64,48 @@ $(document).ready(function() {
       url: queryURL,
       method: "GET"
     }).then(function(response) {
+      JSON.stringify(response);
       console.log(response);
+      console.log(q);
       for (i = 0; i < response.data.length; i++) {
         console.log(
-          response.data[i].id +
+          "ID: " +
+            response.data[i].id +
             ", " +
+            "TITLE: " +
             response.data[i].title +
             ", " +
+            "LINK: " +
             response.data[i].images.fixed_width_still.url
         );
         var gifDiv = $("<div>");
         var img = $("<img>");
         var p = $("<p>");
+        var overlay = $("<div>");
+        var a = $("<a>");
+        var icon = $("<i>");
+        gifDiv.addClass("container");
         p.text("Rating: " + response.data[i].rating);
-        img.addClass("gif");
+        img.addClass("gif container");
         img.attr("data-id", response.data[i].id);
         img.attr("alt", response.data[i].title);
         img.attr("src", response.data[i].images.fixed_width_still.url);
         img.attr("data-state", "still");
         img.attr("data-animate", response.data[i].images.fixed_width.url);
         img.attr("data-still", response.data[i].images.fixed_width_still.url);
+        overlay.addClass("overlay");
+        icon.addClass("icon");
         $(gifDiv).append(img);
+        $(gifDiv).append(overlay);
+        $(overlay).append(icon);
         $(gifDiv).append(p);
+
         $("#images").prepend(gifDiv);
       } //for loop close
     }); //then closing tag
   }); //getGifs closing tag
 
-
-  function addButton(){
-    $("#topics").empty();
-    for (i=0; i < topics.length; i++) {
-      var newButton = $("<button>");
-      newButton.addClass("btn btn-primary");
-      newButton.attr("id", topics[i]);
-      newButton.attr("data-name", topics[i]);
-      newButton.text(topics[i]);
-      $("#topics").append(newButton);
-    }
-  }
-
-  addButton();
-
-  $("#add-button").on("click", function(){
-    event.preventDefault();
-    var topic = $("#add-topic").val().trim();
-    topics.push(topic);
-    addButton();
-  });
   $(document).on("click", ".gif", function toggleState() {
-      
     var state = $(this).attr("data-state");
 
     if (state === "still") {
