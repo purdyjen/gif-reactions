@@ -12,7 +12,6 @@ $(document).ready(function() {
     "joy"
   ];
 
-  
   function addButton() {
     $("#topics").empty();
     for (i = 0; i < topics.length; i++) {
@@ -24,17 +23,10 @@ $(document).ready(function() {
     }
   }
 
-  // function addCardColumns() {
-  //   for (i = 0; i < topics.length; i++) {
-  //     var images = $("<div>");
-  //     images.addClass("images card-columns");
-  //     images.attr("data-name", topics[i]);
-  //     $("#images").append(images);
-  //   }
-  // }
+
 
   addButton();
-  // addCardColumns();
+
 
   $("#add-button").on("click", function() {
     event.preventDefault();
@@ -45,7 +37,7 @@ $(document).ready(function() {
 
     topics.push(topic);
     addButton();
-    // addCardColumns();
+
   });
 
   $(document).on("click", ".btn-primary", function getGifs() {
@@ -116,79 +108,43 @@ $(document).ready(function() {
         title.text(response.data[i].title);
         p.addClass("card-text");
         p.text("Rating: " + response.data[i].rating);
-          
+
         $(images).prepend(card);
         $(card).append(img);
         $(card).append(icon);
         $(card).append(info);
         $(info).append(title);
         $(info).append(p);
+        
       } //for loop close
+      var results = {};
+      Object.assign(response.data[i], results);
+        console.log(results);
     }); //then closing tag
   }); //getGifs closing tag
 
   var favorites = [];
-  var j=0;
-  //favorites
-//user clicks icon
-  //i++ counter
-  //retrieve necessary attributes from (this)
-  //put into object
-  //push into array
-  //place array into local storage
-  //for loop to retrieve from LS
-  $(document).on("click", ".icon", function favoriteGif () {
-    $(this).removeClass("icon far fa-heart").addClass("icon fas fa-heart");
-    var getId = $(this).attr("data-id");
-    favorites.push(getId);
-    j++;
-    localStorage.setItem("favorites", favorites[j]);
-   console.log(favorites);
 
- 
-  //  Object.assign(obj1, obj2)
-       
+  $(document).on("click", ".icon", function favoriteGif() {
+    $(this)
+      .removeClass("icon far fa-heart")
+      .addClass("icon fas fa-heart");
+    var getId = $(this).attr("data-id");
+    data.forEach( )
+    favorites.push(getId);
+
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+    console.log(favorites);
+
   });
 
   $("#fave-button").on("click", function displayFaves() {
-    var url = "https://api.giphy.com/v1/gifs/";
-    var key = "api_key=TetrpMjBeTZDHJDhshu2qZwVTVoobDCD";
-    var id = favorites;
-    var faveURL =
-      url +
-      id +
-      "?" +
-      key; 
-    $.ajax({
-      url: faveURL,
-      method: "GET"
-    }).then(function(faves) {
-        // img.addClass("gif card-img-top");
-        // img.attr("data-id", response.data[i].id);
-        // img.attr("alt", response.data[i].title);
-        // img.attr("src", response.data[i].images.fixed_width_still.url);
-        // img.attr("data-state", "still");
-        // img.attr("data-animate", response.data[i].images.fixed_width.url);
-        // img.attr("data-still", response.data[i].images.fixed_width_still.url);
-        // icon.addClass("icon far fa-heart");
-        // card.addClass("card h-300");
-        // info.addClass("card-body");
-        // title.addClass("card-title");
-        // title.text(response.data[i].title);
-        // p.addClass("card-text");
-        // p.text("Rating: " + response.data[i].rating);
-     
-        // $(images).prepend(card);
-        // $(card).append(img);
-        // $(card).append(icon);
-        // $(card).append(info);
-        // $(info).append(title);
-        // $(info).append(p);
-
+    $("#images").empty();
+   
+   
+    
   });
-});
 
-  
   $(document).on("click", ".gif", function toggleState() {
     var state = $(this).attr("data-state");
 
@@ -203,9 +159,19 @@ $(document).ready(function() {
     }
   }); //toggleState closing tag
 
-
-
-
   addButton();
-  // addCardColumns();
+
 }); //doc ready closing tag
+
+
+// var faves = JSON.parse(localStorage.getItem("favorites"));
+
+// if (!Array.isArray(faves)) {
+//   favorites = [];
+// }
+
+// function id() {
+//   for (var i = 0; i < favorites.length; i++) {
+//     return favorites[i];
+//   }
+// }
