@@ -40,12 +40,20 @@ $(document).ready(function() {
 
   });
 
-  $(document).on("click", ".btn-primary", function getGifs() {
+
+  function randomNum() {
+      return Math.floor(Math.random() * 50) + 1
+    }
+    console.log(randomNum());
+
+    var results = [];
+  
+    $(document).on("click", ".btn-primary", function getGifs() {
     var url = "https://api.giphy.com/v1/gifs/search";
     var key = "api_key=TetrpMjBeTZDHJDhshu2qZwVTVoobDCD";
     var q = $(this).attr("data-name");
     var limit = "limit=10";
-    var offset = "offset=0";
+    var offset = "offset=" + randomNum();
     var rating = "rating=PG-13";
     var lang = "lang=en"; //use a 2-letter ISO 639-1 language code
 
@@ -77,7 +85,7 @@ $(document).ready(function() {
           "ID: " +
             response.data[i].id +
             ", " +
-            "TITLE: " +
+            "TITLE: " + 
             response.data[i].title +
             ", " +
             "LINK: " +
@@ -99,6 +107,7 @@ $(document).ready(function() {
         img.attr("data-state", "still");
         img.attr("data-animate", response.data[i].images.fixed_width.url);
         img.attr("data-still", response.data[i].images.fixed_width_still.url);
+        
         icon.addClass("icon far fa-heart");
         icon.attr("data-id", response.data[i].id);
         icon.attr("index", index);
@@ -115,12 +124,13 @@ $(document).ready(function() {
         $(card).append(info);
         $(info).append(title);
         $(info).append(p);
-        
+        results.push(response.data[i]);
       } //for loop close
-      var results = {};
-      Object.assign(response.data[i], results);
-        console.log(results);
-    }); //then closing tag
+
+      //put object into storage
+      console.log(results);
+      localStorage.setItem('results', JSON.stringify(results));
+    }); //ajax.then closing tag
   }); //getGifs closing tag
 
   var favorites = [];
@@ -130,18 +140,16 @@ $(document).ready(function() {
       .removeClass("icon far fa-heart")
       .addClass("icon fas fa-heart");
     var getId = $(this).attr("data-id");
-    data.forEach( )
-    favorites.push(getId);
-
-    localStorage.setItem("favorites", JSON.stringify(favorites));
+    var findIndex = results.indexOf(getId);
+    favorites.push(results[findIndex]);
     console.log(favorites);
 
   });
 
   $("#fave-button").on("click", function displayFaves() {
     $("#images").empty();
-   
-   
+    var getFaves = localStorage.getItem('results');
+    console.log('results: ', JSON.parse(getFaves));
     
   });
 
