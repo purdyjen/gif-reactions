@@ -3,13 +3,13 @@ $(document).ready(function() {
 
   var topics = [
     "anger",
+    "sadness",
     "fear",
-    "sad",
-    "disgust",
+    "joy",
+    "interest",
     "surprise",
-    "anticipation",
-    "trust",
-    "joy"
+    "disgust",
+    "shame"
   ];
 
   function addButton() {
