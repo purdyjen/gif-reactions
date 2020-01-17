@@ -1,8 +1,8 @@
 body {
+  background-image: url(../images/what-the-hex-dark.png);
   background-color: #616469;
 }
 
-/* Container needed to position the overlay. Adjust the width as needed */
 .container {
     position: relative;
     width: 100%;
@@ -25,13 +25,14 @@ body {
   .hidden {
       display: none;
   }
-  /* Make the image to responsive */
+  
+
   .gif {
     z-index: 0;
     width: 100%;
   }
   
-  /* The icon inside the overlay is positioned in the middle vertically and horizontally */
+ 
   .icon {
     z-index: 1000;
     color: #ffffff;
@@ -47,17 +48,44 @@ body {
   .icon:hover{
     color: #ff0000;
   }
+
+  .fas{
+    color: #ff0000;
+  }
+
+  label {
+    margin-left:10px;
+    margin-top:50px;
+  }
   input {
     margin-left: 10px;;
   }
+
+  #add-button {
+    float: right;
+    margin-right: 10px;
+  }
+
+  .btn-block{
+    margin-top: 50px;
+    margin-left: 5px;
+    margin-right: 20px;
+  }
+  .btn-dark {
+    margin: 5px;
+  }
+
   #aside {
     color: #ffffff;
     position:fixed;
     top: 0;
     left:0;
     bottom:0;
+    background-image: url(../images/what-the-hex-dark.png);
     background-color: #000000;
     max-width: 200px; 
+    /* border-right: #ffffff solid 1px; */
+    padding: 10px;
   }
 
   #topics {
@@ -65,5 +93,7 @@ body {
   }
 
   #images {
-    margin-left: 205px;
+    margin-left: 215px;
+    margin-top: 15px;
+    margin-right: 15px;
   }

@@ -16,7 +16,7 @@ $(document).ready(function() {
     $("#topics").empty();
     for (i = 0; i < topics.length; i++) {
       var newButton = $("<button>");
-      newButton.addClass("btn btn-primary");
+      newButton.addClass("btn btn-dark");
       newButton.attr("data-name", topics[i]);
       newButton.text("#" + topics[i]);
       $("#topics").append(newButton);
@@ -48,7 +48,7 @@ $(document).ready(function() {
 
     var results = [];
   
-    $(document).on("click", ".btn-primary", function getGifs() {
+    $(document).on("click", ".btn-dark", function getGifs() {
     var url = "https://api.giphy.com/v1/gifs/search";
     var key = "api_key=TetrpMjBeTZDHJDhshu2qZwVTVoobDCD";
     var q = $(this).attr("data-name");
@@ -175,7 +175,7 @@ $(document).ready(function() {
       img.attr("data-animate", faves[k].dataAnimate);
       img.attr("data-still", faves[k].dataStill);
       
-      icon.addClass("icon far fa-heart");
+      icon.addClass("icon fas fa-heart");
       icon.attr("data-id", faves[k].dataId);
       icon.attr("alt", faves[k].gifAlt);
       icon.attr("src", faves[k].gifSrc);
