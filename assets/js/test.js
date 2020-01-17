@@ -27,17 +27,17 @@ $(document).ready(function() {
 
   addButton();
 
-
+  
   $("#add-button").on("click", function() {
     event.preventDefault();
     var topic = $("#add-topic")
       .val()
       .trim()
       .toLowerCase();
-
+      if (topic.length > 0){
     topics.push(topic);
-    addButton();
-
+    addButton();}
+    $("#add-topic").val("");
   });
 
 
