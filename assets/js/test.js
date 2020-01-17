@@ -77,9 +77,9 @@ $(document).ready(function() {
       url: queryURL,
       method: "GET"
     }).then(function(response) {
-      JSON.stringify(response);
-      console.log(response);
-      console.log(q);
+      // JSON.stringify(response);
+      // console.log(response);
+      // console.log(q);
       for (i = 0; i < response.data.length; i++) {
         console.log(
           "ID: " +
@@ -98,8 +98,7 @@ $(document).ready(function() {
         var info = $("<div>");
         var title = $("<h5>");
         var icon = $("<i>");
-        var index = [i];
-
+        
         img.addClass("gif card-img-top");
         img.attr("data-id", response.data[i].id);
         img.attr("alt", response.data[i].title);
@@ -110,7 +109,12 @@ $(document).ready(function() {
         
         icon.addClass("icon far fa-heart");
         icon.attr("data-id", response.data[i].id);
-        icon.attr("index", index);
+        icon.attr("alt", response.data[i].title);
+        icon.attr("src", response.data[i].images.fixed_width_still.url);
+        icon.attr("data-state", "still");
+        icon.attr("data-animate", response.data[i].images.fixed_width.url);
+        icon.attr("data-still", response.data[i].images.fixed_width_still.url);
+        
         card.addClass("card h-300");
         info.addClass("card-body");
         title.addClass("card-title");
@@ -124,12 +128,9 @@ $(document).ready(function() {
         $(card).append(info);
         $(info).append(title);
         $(info).append(p);
-        results.push(response.data[i]);
+        // results.push(response.data[i]);
       } //for loop close
 
-      //put object into storage
-      console.log(results);
-      localStorage.setItem('results', JSON.stringify(results));
     }); //ajax.then closing tag
   }); //getGifs closing tag
 
@@ -139,17 +140,24 @@ $(document).ready(function() {
     $(this)
       .removeClass("icon far fa-heart")
       .addClass("icon fas fa-heart");
-    var getId = $(this).attr("data-id");
-    var findIndex = results.indexOf(getId);
-    favorites.push(results[findIndex]);
+    var faveGif = {
+      dataId: $(this).attr("data-id"),
+      gifAlt: $(this).attr("alt"),
+      gifSrc: $(this).attr("src"),
+      dataState: $(this).attr("data-state"),
+      dataAnimate: $(this).attr("data-animate"),
+      dataStill: $(this).attr("data-still")
+    }
+    favorites.push(faveGif);
+    localStorage.setItem('favorites', JSON.stringify(favorites));
     console.log(favorites);
 
   });
 
   $("#fave-button").on("click", function displayFaves() {
     $("#images").empty();
-    var getFaves = localStorage.getItem('results');
-    console.log('results: ', JSON.parse(getFaves));
+    var faves = JSON.parse(localStorage.getItem("favorites"));
+    console.log(faves);
     
   });
 
@@ -172,14 +180,51 @@ $(document).ready(function() {
 }); //doc ready closing tag
 
 
-// var faves = JSON.parse(localStorage.getItem("favorites"));
-
 // if (!Array.isArray(faves)) {
 //   favorites = [];
 // }
+// id();
 
-// function id() {
-//   for (var i = 0; i < favorites.length; i++) {
-//     return favorites[i];
-//   }
-// }
+ // function id() {
+  //   for (var i = 0; i < favorites.length; i++) {
+  //     console.log(favorites[i]);
+  //   }
+  // }
+  // id();
+      // var card = $("<div>");
+      // var img = $("<img>");
+      // var p = $("<p>");
+      // var info = $("<div>");
+      // var title = $("<h5>");
+      // var icon = $("<i>");
+     
+      // img.addClass("gif card-img-top");
+      // img.attr("data-id", faves.faveGif[i].dataId);
+      // img.attr("alt", faves.faveGif[i].title);
+      // img.attr("src", response.data[i].images.fixed_width_still.url);
+      // img.attr("data-state", "still");
+      // img.attr("data-animate", response.data[i].images.fixed_width.url);
+      // img.attr("data-still", response.data[i].images.fixed_width_still.url);
+      
+      // icon.addClass("icon far fa-heart");
+      // icon.attr("data-id", response.data[i].id);
+      // icon.attr("alt", response.data[i].title);
+      // icon.attr("src", response.data[i].images.fixed_width_still.url);
+      // icon.attr("data-state", "still");
+      // icon.attr("data-animate", response.data[i].images.fixed_width.url);
+      // icon.attr("data-still", response.data[i].images.fixed_width_still.url);
+      
+      // card.addClass("card h-300");
+      // info.addClass("card-body");
+      // title.addClass("card-title");
+      // title.text(response.data[i].title);
+      // p.addClass("card-text");
+      // p.text("Rating: " + response.data[i].rating);
+
+      // $(images).prepend(card);
+      // $(card).append(img);
+      // $(card).append(icon);
+      // $(card).append(info);
+      // $(info).append(title);
+      // $(info).append(p);
+ 
