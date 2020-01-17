@@ -114,7 +114,7 @@ $(document).ready(function() {
         icon.attr("data-state", "still");
         icon.attr("data-animate", response.data[i].images.fixed_width.url);
         icon.attr("data-still", response.data[i].images.fixed_width_still.url);
-        
+        icon.attr("data-rating", response.data[i].rating);
         card.addClass("card h-300");
         info.addClass("card-body");
         title.addClass("card-title");
@@ -144,9 +144,9 @@ $(document).ready(function() {
       dataId: $(this).attr("data-id"),
       gifAlt: $(this).attr("alt"),
       gifSrc: $(this).attr("src"),
-      dataState: $(this).attr("data-state"),
       dataAnimate: $(this).attr("data-animate"),
-      dataStill: $(this).attr("data-still")
+      dataStill: $(this).attr("data-still"),
+      rating: $(this).attr("data-rating")
     }
     favorites.push(faveGif);
     localStorage.setItem('favorites', JSON.stringify(favorites));
@@ -158,7 +158,46 @@ $(document).ready(function() {
     $("#images").empty();
     var faves = JSON.parse(localStorage.getItem("favorites"));
     console.log(faves);
-    
+    for (k=0; k < faves.length; k++) {
+      console.log(faves[k]);
+      var card = $("<div>");
+      var img = $("<img>");
+      var p = $("<p>");
+      var info = $("<div>");
+      var title = $("<h5>");
+      var icon = $("<i>");
+     
+      img.addClass("gif card-img-top");
+      img.attr("data-id", faves[k].dataId);
+      img.attr("alt", faves[k].gifAlt);
+      img.attr("src", faves[k].gifSrc);
+      img.attr("data-state", "still");
+      img.attr("data-animate", faves[k].dataAnimate);
+      img.attr("data-still", faves[k].dataStill);
+      
+      icon.addClass("icon far fa-heart");
+      icon.attr("data-id", faves[k].dataId);
+      icon.attr("alt", faves[k].gifAlt);
+      icon.attr("src", faves[k].gifSrc);
+      icon.attr("data-state", "still");
+      icon.attr("data-animate", faves[k].dataAnimate);
+      icon.attr("data-still", faves[k].dataStill);
+      icon.attr("data-rating", faves[k].rating);
+
+      card.addClass("card h-300");
+      info.addClass("card-body");
+      title.addClass("card-title");
+      title.text(faves[k].gifAlt);
+      p.addClass("card-text");
+      p.text("Rating: " + faves[k].rating);
+
+      $(images).prepend(card);
+      $(card).append(img);
+      $(card).append(icon);
+      $(card).append(info);
+      $(info).append(title);
+      $(info).append(p);
+    }
   });
 
   $(document).on("click", ".gif", function toggleState() {
@@ -191,40 +230,5 @@ $(document).ready(function() {
   //   }
   // }
   // id();
-      // var card = $("<div>");
-      // var img = $("<img>");
-      // var p = $("<p>");
-      // var info = $("<div>");
-      // var title = $("<h5>");
-      // var icon = $("<i>");
      
-      // img.addClass("gif card-img-top");
-      // img.attr("data-id", faves.faveGif[i].dataId);
-      // img.attr("alt", faves.faveGif[i].title);
-      // img.attr("src", response.data[i].images.fixed_width_still.url);
-      // img.attr("data-state", "still");
-      // img.attr("data-animate", response.data[i].images.fixed_width.url);
-      // img.attr("data-still", response.data[i].images.fixed_width_still.url);
-      
-      // icon.addClass("icon far fa-heart");
-      // icon.attr("data-id", response.data[i].id);
-      // icon.attr("alt", response.data[i].title);
-      // icon.attr("src", response.data[i].images.fixed_width_still.url);
-      // icon.attr("data-state", "still");
-      // icon.attr("data-animate", response.data[i].images.fixed_width.url);
-      // icon.attr("data-still", response.data[i].images.fixed_width_still.url);
-      
-      // card.addClass("card h-300");
-      // info.addClass("card-body");
-      // title.addClass("card-title");
-      // title.text(response.data[i].title);
-      // p.addClass("card-text");
-      // p.text("Rating: " + response.data[i].rating);
-
-      // $(images).prepend(card);
-      // $(card).append(img);
-      // $(card).append(icon);
-      // $(card).append(info);
-      // $(info).append(title);
-      // $(info).append(p);
  
