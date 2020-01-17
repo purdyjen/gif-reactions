@@ -97,3 +97,62 @@ body {
     margin-top: 15px;
     margin-right: 15px;
   }
+
+  @media screen and (max-width: 640px) {
+  
+  aside {
+    max-width: 110px !important;
+  }
+
+  #logo{
+    max-width: 100px;
+  }
+
+  .btn-block {
+    max-width: 100px;
+    margin-top: 10px;
+    margin-left: 5px;
+  }
+
+  label{
+    margin-top: 15px;
+    margin-left: 5px;
+  }
+
+  input {
+    max-width: 80px;
+    margin-left: 5px;
+  }
+  
+  #add-button {
+    float: left;
+    margin-left: 5px;
+    margin-top:5px;
+  }
+
+  #topics {
+    margin-left: 115px;
+  }
+
+  .btn-dark {
+    font-size: small;
+    padding: 6px;
+    margin: 3px;
+  }
+
+  #images {
+    margin-left: 115px;
+    margin-top: 15px;
+    margin-right: 15px;
+  }
+
+  .card-title{
+    font-size: medium;
+    margin: 2px 2px 5px 2px;
+  }
+
+  .card-body {
+    padding: 5px 2px 0 2px;
+  }
+
+  }
