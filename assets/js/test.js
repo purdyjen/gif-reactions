@@ -23,10 +23,12 @@ $(document).ready(function() {
     }
   }
 
-
-
   addButton();
 
+  $(document).on("load", function () {
+    var faves = JSON.parse(localStorage.getItem("favorites"));
+    console.log(faves);
+  });
   
   $("#add-button").on("click", function() {
     event.preventDefault();
