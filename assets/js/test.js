@@ -139,9 +139,12 @@ $(document).ready(function() {
   var favorites = [];
 
   $(document).on("click", ".icon", function favoriteGif() {
-    $(this)
+    var faves = JSON.parse(localStorage.getItem("favorites"));
+     $(this)
       .removeClass("icon far fa-heart")
       .addClass("icon fas fa-heart");
+      var faves = JSON.parse(localStorage.getItem("favorites")) || [];
+      console.log("before addition:" + faves);
     var faveGif = {
       dataId: $(this).attr("data-id"),
       gifAlt: $(this).attr("alt"),
@@ -150,8 +153,8 @@ $(document).ready(function() {
       dataStill: $(this).attr("data-still"),
       rating: $(this).attr("data-rating")
     }
-    favorites.push(faveGif);
-    localStorage.setItem('favorites', JSON.stringify(favorites));
+    faves.push(faveGif);
+    localStorage.setItem('favorites', JSON.stringify(faves));
     console.log(favorites);
 
   });
