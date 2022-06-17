@@ -134,37 +134,26 @@ $(document).ready(function () {
 
   var favorites = [];
 
+  //add functionality to remove favorite
   $(document).on("click", ".icon", function favoriteGif() {
     var faves = JSON.parse(localStorage.getItem("favorites"));
-
-    if ($(this).hasClass("far")) {
-      $(this).removeClass("icon far fa-heart").addClass("icon fas fa-heart");
-      var faves = JSON.parse(localStorage.getItem("favorites")) || [];
-      console.log("before addition:" + faves);
-      var faveGif = {
-        dataId: $(this).attr("data-id"),
-        gifAlt: $(this).attr("alt"),
-        gifSrc: $(this).attr("src"),
-        dataAnimate: $(this).attr("data-animate"),
-        dataStill: $(this).attr("data-still"),
-        rating: $(this).attr("data-rating"),
-      };
-      faves.push(faveGif);
-      localStorage.setItem("favorites", JSON.stringify(faves));
-      console.log(favorites);
-    } else {
-      $(this).removeClass("icon fas fa-heart").addClass("icon far fa-heart");
-      const getDataId = $(this).attr("data-id");
-      //find specific object based on data-id
-      const searchIndex = faves.findIndex((fave) => fave.dataId == getDataId);
-      faves.splice(searchIndex, 1);
-      localStorage.setItem("favorites", JSON.stringify(faves));
-      displayFaves();
-      console.log(getDataId, searchIndex);
-    }
+    $(this).removeClass("icon far fa-heart").addClass("icon fas fa-heart");
+    var faves = JSON.parse(localStorage.getItem("favorites")) || [];
+    console.log("before addition:" + faves);
+    var faveGif = {
+      dataId: $(this).attr("data-id"),
+      gifAlt: $(this).attr("alt"),
+      gifSrc: $(this).attr("src"),
+      dataAnimate: $(this).attr("data-animate"),
+      dataStill: $(this).attr("data-still"),
+      rating: $(this).attr("data-rating"),
+    };
+    faves.push(faveGif);
+    localStorage.setItem("favorites", JSON.stringify(faves));
+    console.log(favorites);
   });
 
-  const displayFaves = () => {
+  $("#fave-button").on("click", function displayFaves() {
     $("#images").empty();
     var faves = JSON.parse(localStorage.getItem("favorites"));
     console.log(faves);
@@ -208,9 +197,7 @@ $(document).ready(function () {
       $(info).append(title);
       $(info).append(p);
     }
-  };
-
-  $("#fave-button").on("click", displayFaves);
+  });
 
   $(document).on("click", ".gif", function toggleState() {
     var state = $(this).attr("data-state");
