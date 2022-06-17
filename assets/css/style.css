@@ -66,6 +66,11 @@ body {
     margin-right: 10px;
   }
 
+  #remove-button {
+    float: right;
+    margin-right: 10px;
+  }
+
   .btn-block{
     margin-top: 50px;
     margin-left: 5px;
@@ -125,6 +130,12 @@ body {
   }
   
   #add-button {
+    float: left;
+    margin-left: 5px;
+    margin-top:5px;
+  }
+
+  #remove-button {
     float: left;
     margin-left: 5px;
     margin-top:5px;

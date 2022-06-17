@@ -47,6 +47,22 @@ $(document).ready(function () {
     $("#add-topic").val("");
   });
 
+
+  $("#remove-button").on("click", function () {
+    event.preventDefault();
+    var topic = $("#remove-topic").val().trim().toLowerCase();
+    if (topic.length > 0) {
+      const index = topics.indexOf(topic);
+      console.log(index);
+      if (index !== -1) {
+        topics.splice(index, 1);
+        localStorage.setItem("topics", JSON.stringify(topics));
+        addButton();
+      }
+    }
+    $("#remove-topic").val("");
+  });
+
   function randomNum() {
     return Math.floor(Math.random() * 50) + 1;
   }
