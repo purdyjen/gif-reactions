@@ -2,7 +2,7 @@ $(document).ready(function () {
   //doc ready
   var topics = JSON.parse(localStorage.getItem("topics"));
 
-    if (topics.length === 0) {
+    if (topics === null) {
       topics =   [
         "anger",
         "sadness",
