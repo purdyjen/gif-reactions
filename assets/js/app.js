@@ -34,7 +34,6 @@ $(document).ready(function () {
 
   $(document).on("load", function () {
     var faves = JSON.parse(localStorage.getItem("favorites"));
-    console.log(faves);
   });
 
   $("#add-button").on("click", function () {
@@ -45,14 +44,12 @@ $(document).ready(function () {
       localStorage.setItem("topics", JSON.stringify(topics));
       addButton();
     }
-    console.log(topic);
     $("#add-topic").val("");
   });
 
   function randomNum() {
     return Math.floor(Math.random() * 50) + 1;
   }
-  // console.log(randomNum());
 
   var results = [];
 
@@ -85,20 +82,7 @@ $(document).ready(function () {
       url: queryURL,
       method: "GET",
     }).then(function (response) {
-      // JSON.stringify(response);
-      // console.log(response);
-      // console.log(q);
       for (i = 0; i < response.data.length; i++) {
-        console.log(
-          "ID: " +
-            response.data[i].id +
-            ", " +
-            "TITLE: " +
-            response.data[i].title +
-            ", " +
-            "LINK: " +
-            response.data[i].images.fixed_width_still.url
-        );
 
         var card = $("<div>");
         var img = $("<img>");
@@ -136,7 +120,6 @@ $(document).ready(function () {
         $(card).append(info);
         $(info).append(title);
         $(info).append(p);
-        // results.push(response.data[i]);
       } //for loop close
     }); //ajax.then closing tag
   }); //getGifs closing tag
@@ -149,7 +132,6 @@ $(document).ready(function () {
     if ($(this).hasClass("far")) {
       $(this).removeClass("icon far fa-heart").addClass("icon fas fa-heart");
       var faves = JSON.parse(localStorage.getItem("favorites")) || [];
-      console.log("before addition:" + faves);
       var faveGif = {
         dataId: $(this).attr("data-id"),
         gifAlt: $(this).attr("alt"),
@@ -160,7 +142,6 @@ $(document).ready(function () {
       };
       faves.push(faveGif);
       localStorage.setItem("favorites", JSON.stringify(faves));
-      console.log(favorites);
     } else {
       $(this).removeClass("icon fas fa-heart").addClass("icon far fa-heart");
       const getDataId = $(this).attr("data-id");
@@ -169,16 +150,13 @@ $(document).ready(function () {
       faves.splice(searchIndex, 1);
       localStorage.setItem("favorites", JSON.stringify(faves));
       displayFaves();
-      console.log(getDataId, searchIndex);
     }
   });
 
   const displayFaves = () => {
     $("#images").empty();
     var faves = JSON.parse(localStorage.getItem("favorites"));
-    console.log(faves);
     for (k = 0; k < faves.length; k++) {
-      console.log(faves[k]);
       var card = $("<div>");
       var img = $("<img>");
       var p = $("<p>");
