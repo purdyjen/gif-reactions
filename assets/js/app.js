@@ -1,16 +1,23 @@
 $(document).ready(function () {
   //doc ready
+  var topics = JSON.parse(localStorage.getItem("topics"));
 
-  var topics = [
-    "anger",
-    "sadness",
-    "fear",
-    "joy",
-    "interest",
-    "surprise",
-    "disgust",
-    "shame",
-  ];
+    if (topics.length === 0) {
+      topics =   [
+        "anger",
+        "sadness",
+        "fear",
+        "joy",
+        "interest",
+        "surprise",
+        "disgust",
+        "shame",
+      ];
+      localStorage.setItem("topics", JSON.stringify(topics));
+    } else {
+      topics = JSON.parse(localStorage.getItem("topics"));
+    }
+
 
   function addButton() {
     $("#topics").empty();
@@ -31,12 +38,14 @@ $(document).ready(function () {
   });
 
   $("#add-button").on("click", function () {
-    e.preventDefault();
+    event.preventDefault();
     var topic = $("#add-topic").val().trim().toLowerCase();
     if (topic.length > 0) {
       topics.push(topic);
+      localStorage.setItem("topics", JSON.stringify(topics));
       addButton();
     }
+    console.log(topic);
     $("#add-topic").val("");
   });
 
