@@ -170,7 +170,7 @@ $(document).ready(function () {
 
   const displayFaves = () => {
     // Generates gif cards for each object in array
-    // Reference above Ajax function for specifics
+    // This code has to be duplicated and modified from above Ajax function because of how objects in the faves array are structured compared to objects in the ajax response
     $("#images").empty();
     for (k = 0; k < faves.length; k++) {
       var card = $("<div>");
