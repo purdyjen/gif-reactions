@@ -1,49 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="assets/css/reset.css" />
-    <link rel="icon" type="image/x-icon" href="./assets/images/icons8-filled-heart-16.png">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" type="text/css" href="./assets/css/reset.css" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="./assets/images/icons8-filled-heart-16.png"
+    />
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <script src="https://kit.fontawesome.com/9a9678c181.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="assets/js/app.js"></script>
+    <script
+      src="https://kit.fontawesome.com/9a9678c181.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
     <title>GIF #reactions</title>
-</head>
-<body>
+  </head>
+  <body>
     <div id="topics"></div>
-    
+
     <div id="images" class="card-columns"></div>
     <aside id="aside">
-      <img id="logo" src="assets/images/gif-reactions.png">
-      <button id="fave-button" class="btn btn-danger btn-block">Favorites</button>
+      <img id="logo" src="./assets/images/gif-reactions.png" />
+      <button
+        id="fave-button"
+        onclick="displayFaves()"
+        class="btn btn-danger btn-block"
+      >
+        Favorites
+      </button>
       <form id="my-form">
         <div class="form-group">
-          <label>Add new <br><strong>#reaction:</strong></label>
-          <input id="add-topic" type="text">
+          <label>Add new <br /><strong>#reaction:</strong></label>
+          <input id="add-topic" type="text" />
         </div>
         <button id="add-button" class="btn btn-outline-info">Add</button>
         <div class="form-group">
-          <label>Remove a<br><strong>#reaction:</strong></label>
-          <input id="remove-topic" type="text">
+          <label>Remove a<br /><strong>#reaction:</strong></label>
+          <input id="remove-topic" type="text" />
         </div>
         <button id="remove-button" class="btn btn-outline-info">Remove</button>
-    </form>
+      </form>
     </aside>
     <footer>
-      <span>favicon: <a target="_blank" href="https://icons8.com/icon/aId5rVASLwDE/filled-heart">Filled Heart</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a></span>
+      <span
+        >favicon:
+        <a
+          target="_blank"
+          href="https://icons8.com/icon/aId5rVASLwDE/filled-heart"
+          >Filled Heart</a
+        >
+        icon by <a target="_blank" href="https://icons8.com">Icons8</a></span
+      >
     </footer>
-</body>
+    <script type="text/javascript" src="./assets/js/app.js"></script>
+  </body>
 </html>
