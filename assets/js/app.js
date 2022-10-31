@@ -13,7 +13,7 @@ const removeBtn = document.getElementById("remove-button");
 const addTopic = document.getElementById("add-topic");
 const removeTopic = document.getElementById("remove-topic");
 const imagesDiv = document.getElementById("images");
-
+const faveBtn = document.getElementById("fave-button");
 // If null, populates the topics array with eight values and then saves it into local storage
 if (topics.length === 0) {
   topics = [
@@ -148,7 +148,7 @@ function toggleFave(target) {
   }
 }
 
-const displayFaves = () => {
+faveBtn.onclick = function () {
   imagesDiv.innerText = "";
   buildCards(faves, true);
 };
